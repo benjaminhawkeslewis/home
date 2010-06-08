@@ -1,0 +1,15 @@
+#!/bin/sh
+# github:bin/home-symlinks
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Create home symlinks
+
+cd ~
+ln -s ~/Projects/home/etc
+mkdir -p bin
+cd bin
+for f in `find ~/Projects/home/bin` ; do ln -s $f ; done 
+cd -
+for f in `find ~/Projects/home -name ".bash*" -depth 1` ; do ln -s $f ; done 
+ln -s ~/etc/gitignore .gitignore
+
