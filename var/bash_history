@@ -1,0 +1,83 @@
+sudo port search http
+sudo port i 
+sudo port install p5-http-lite
+sudo port install bash-completion
+sudo port install bash-completion
+grep "completion" .bash*
+grep "completion" etc/*
+grep -r "completion" etc/*
+vim /etc/bash/initialise
+vim /etc/bash/initialise
+vim etc/bash/initialise
+vim etc/bash/function/01.source 
+vim etc/bash/initialise
+ssh
+cat ~/share/home/setup.markdown
+ls /etc
+ls etc
+ls
+touch etc/.bash_completion
+rm etc/.bash_completion 
+sudo port search version
+sudo port search p5-version
+sudo port install p5-version
+which perl
+perl --version
+sudo port search perl
+sudo port install perl5.10
+which perl
+sudo port help
+sudo port select
+sudo port select perl 5.10
+sudo port select --list
+sudo port select --list perl
+which perl
+ls -al /opt/local/bin/perl
+cat /opt/local/bin/perl
+exit
+cd Documents/Imagini/
+echo "10.205.3.151" > vm-addr.txt
+ssh 10.205.3.151
+ssh root@10.205.3.151
+ls
+cd ~
+cd /
+cd ~
+exit
+Projects/home/bin/scr
+Projects/home/bin/scr
+cd Projects/home/
+git add
+git add .
+git diff
+git diff .
+git help commit
+git commit --dry-run
+cat etc/bash/defaults/user
+grep "history" *
+grep -r "history" *
+touch etc/bash/defaults/10.locations
+cp etc/bash/defaults/ etc/bash/defaults/locations
+cp etc/bash/defaults/10.locations etc/bash/defaults/locations
+vim etc/bash/defaults/locations
+vim etc/bash/defaults/locations
+rm etc/bash/defaults/locations
+vim ~/.git-ignore
+git commit --dry-run
+vim ~/.git-ignore
+mv /Users/benjamin/.git-ignore ~/.gitignore
+git commit --dry-run
+git reset HEAD var/bash_history
+git commit --dry-run
+git commit --dry-run
+git commit -m "Set up user, MacPorts"
+ssh benjamin@192.168.1.146
+cp /Users/benjamin/.gitignore etc/gitignore
+rm /Users/benjamin/.gitignore 
+ln -s /Users/benjamin/etc/gitignore .gitignore
+ls
+cd bin
+ls
+touch home-symlinks
+head home
+vim home-symlinks 
