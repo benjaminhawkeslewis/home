@@ -7,5 +7,7 @@ path_prepend    "${MACPORTS_BASE}/sbin"
 path_prepend    "${MACPORTS_BASE}/bin"
 manpath_append  "${MACPORTS_BASE}/man"
 
-[ -d "${PKGSRC_BASE}/etc/bash_completion.d" ] \
-    && BASH_COMPLETION="${PKGSRC_BASE}/etc/bash_completion"
+# [ -d "${PKGSRC_BASE}/etc/bash_completion.d" ] \
+#    && BASH_COMPLETION="${PKGSRC_BASE}/etc/bash_completion"
+
+BASH_COMPLETION="${MACPORTS_BASE}/etc/bash_completion"
