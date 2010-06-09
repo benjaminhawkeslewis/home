@@ -1,0 +1,20 @@
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+
+function! HtmlEscape()
+  silent s/\%V&/\&amp;/eg
+  silent s/\%V</\&lt;/eg
+  silent s/\%V>/\&gt;/eg
+  silent s/\%V"/\&quot;/eg
+  silent s/\%V'/\&#39;/eg
+endfunction
+
+function! HtmlUnescape()
+  silent s/\%V&amp;/\&/eg
+  silent s/\%V&lt;/</eg
+  silent s/\%V&gt;/>/eg
+  silent s/\%V&quot;/"/eg
+  silent s/\%V&#39;/'/eg
+endfunction
+
+autocmd FileType html map <silent> <c-h> :call HtmlEscape()<CR>
+autocmd FileType html map <silent> <c-u> :call HtmlUnescape()<CR>
