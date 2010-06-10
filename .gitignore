@@ -1,1 +1,3 @@
-/Users/benjamin/etc/gitignore
+*/bash_history
+*/less_history
+.*.swp
