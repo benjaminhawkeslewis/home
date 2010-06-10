@@ -1,7 +1,7 @@
-" github:etc/vim/rc/kitchensink
+" github:benjaminhawkeslewis.com:etc/vim/rc/10.mail
 " -*- Mode: Vimrc; tab-width: 4; indent-tabs-mode: nil; -*-
 "
-"       Vim mail settings
+"       Vim mail settings.
 
 autocmd FileType mail set textwidth=68
 

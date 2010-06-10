@@ -73,7 +73,9 @@ sub check_file_for_github_signature {
         $count++;
         
         if ( $line =~ m{^ $github_signature $}x ) {
+            print "\nLINE: $line\n";
             $files_to_check{ $file } = get_github_url( %+ );
+            print "\nURL: $files_to_check{$file}\n";
         }
     }
 }

@@ -1,1 +1,6 @@
+# github:benjaminhawkeslewis:home:etc/bash/defaults/vim
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#    Vim environment variables
+
 export MYVIMRC=/vim/vimrc

@@ -1,4 +1,4 @@
-# github:norm:homedir:etc/bash/defaults/user
+# github:benjaminhawkeslewis:home:etc/bash/defaults/user
 # -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
 
 export DEFAULT_USER='benjamin'
