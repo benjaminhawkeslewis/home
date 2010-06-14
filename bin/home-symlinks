@@ -6,6 +6,8 @@
 
 cd ~
 ln -s ~/Projects/home/etc
+ln -s ~/Projects/home/share
+ln -s ~/Projects/home/var
 mkdir -p bin
 cd bin
 for f in `find ~/Projects/home/bin` ; do ln -s $f ; done 
