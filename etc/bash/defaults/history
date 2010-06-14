@@ -1,0 +1,8 @@
+# github:benjaminhawkeslewis:home:etc/bash/defaults/user
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#   Bash History settings. (Note history file locations are in "locations".)
+
+shopt -s histappend          # Append to history
+export HISTCONTROL=erasedups # No duplicate entries 
+export HISTSIZE=100000       # Big history

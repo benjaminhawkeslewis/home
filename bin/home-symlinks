@@ -4,14 +4,15 @@
 #
 #       Create home symlinks
 
-cd ~
-ln -s ~/Projects/home/etc
-ln -s ~/Projects/home/share
-ln -s ~/Projects/home/var
-mkdir -p bin
-cd bin
-for f in `find ~/Projects/home/bin` ; do ln -s $f ; done 
-cd -
-for f in `find ~/Projects/home -name ".bash*" -depth 1` ; do ln -s $f ; done 
-ln -s ~/etc/gitignore .gitignore
-ln -s ~/etc/vim .vim
+cd $HOME
+ln -s $HOME/Projects/home/etc
+ln -s $HOME/Projects/home/share
+ln -s $HOME/Projects/home/var
+mkdir -p $HOME/bin
+cd $HOME/bin
+pwd
+for f in `find ~/Projects/home/bin -type f` ; do ln -s $f ; done 
+cd $HOME 
+for f in `find ~/Projects/home -type f -name ".bash*" -depth 1` ; do ln -s $f ; done 
+ln -s $HOME/etc/gitignore .gitignore
+ln -s $HOME/etc/vim .vim
