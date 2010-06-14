@@ -16,9 +16,10 @@ END
 }
 
 just_ssh_keys=0
-    keys_file="${SSH_AUTHORIZED_KEYS:=${HOME}/.ssh/authorized_keys}"
-     skeleton="${HOME_REPOSITORY:=${HOME}/Projects/home}"
-      use_scp=0
+    keys_file1="${SSH_AUTHORIZED_KEYS:=${HOME}/.ssh/authorized_keys2}"
+      keys_file2="${SSH_AUTHORIZED_KEYS2:=${HOME}/.ssh/authorizedkeys2}"
+        skeleton="${HOME_REPOSITORY:=${HOME}/Projects/home}"
+          use_scp=0
 
 while getopts "f:hks" option; do
     case $option in
@@ -35,8 +36,15 @@ host="$1"
     || usage_and_exit
 
 # will this work?
-cat $keys_file \
-    | ssh $host "mkdir -p .ssh ; cat > .ssh/authorized_keys"
+if [ -e "$keys_file" ]; then
+    cat $keys_file \
+        | ssh $host "mkdir -p .ssh ; cat > .ssh/authorized_keys"
+fi
+
+if [ -e "$keys_file2" ]; then
+    cat $keys_file2 \
+        | ssh $host "mkdir -p .ssh ; cat > .ssh/authorized_keys2"
+fi
 
 if [ $just_ssh_keys -ne 1 ]; then
     cd $skeleton \
