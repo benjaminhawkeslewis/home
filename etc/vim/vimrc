@@ -3,4 +3,19 @@
 "
 "       Separate out vim settings into files in ~/etc/vim/rc.
 
-runtime! rc/*
+call pathogen#runtime_append_all_bundles()
+
+set guifont=Monaco:h14
+
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+
+" http://bjori.blogspot.com/2010/01/unix-manual-pages-for-php-functions.html
+autocmd FileType php set keywordprg=pman
+autocmd FileType c set omnifunc=ccomplete#Complete
+
+runtime! etc/vim/rc/*
