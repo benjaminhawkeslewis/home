@@ -11,8 +11,9 @@ ln -s $HOME/Projects/home/var
 mkdir -p $HOME/bin
 cd $HOME/bin
 pwd
-for f in `find ~/Projects/home/bin -type f` ; do ln -s $f ; done 
+for f in `find $HOME/Projects/home/bin -type f` ; do ln -s $f ; done 
 cd $HOME 
-for f in `find ~/Projects/home -type f -name ".bash*" -depth 1` ; do ln -s $f ; done 
+for f in `find $HOME/Projects/home -type f -name ".bash*" -depth 1` ; do ln -s $f ; done 
 ln -s $HOME/etc/gitignore .gitignore
 ln -s $HOME/etc/vim .vim
+ln -s $HOME/etc/vim/vimrc .vimrc
