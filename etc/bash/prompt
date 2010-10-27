@@ -5,6 +5,8 @@
 
 declare -a git_status
 
+declare -a svn_status
+
 # Echo the last N parts of the current working directory, also trimming 
 # individual parts to no more than PWDN_MAX_WORD.
 function pwdn {
@@ -102,6 +104,58 @@ function git_status_formatter {
         "$git_status_symbol"
 }
 
+# Setup variables indicating the current svn status, for use in the formatter.
+# Adapted from http://ipsedixit.net/2devnull/120/show-subversion-status-in-shell-prompt
+function get_svn_status {
+    unset -v svn_status
+    svn_status[0]='' # Revision
+    svn_status[1]='' # Branch
+    svn_status[2]='' # Status
+    
+    local revision=$(
+         svn info 2>/dev/null | grep Revision | sed -e 's/Revision: //'
+    )
+
+    local branch=''
+    #local branch=$(
+    #     svn info | grep ^URL |
+    #     perl -ne 's@^.*(?:branches|tags)?/(trunk|[^/]+).*?$@\1@g; print $_;'
+    #     perl -ne 's@^.*?/.*?(?:branches|tags)?/(trunk).*?$@\1@g; s@^.*(?:/branches/|/tags/)?([^/]+).*?$@\1@g; s@([^/]+)$@\1@g; print $_;'
+    #)
+    
+    [ "$revision" ] || return # Stop if not working copy
+    
+    svn_status[0]="$revision"
+
+    local status=(
+        # Status items (second column is always ' ', 'C', or 'M')
+        # http://svnbook.red-bean.com/nightly/en/svn.ref.svn.c.status.html documents the possibilities
+        $(
+             svn status | grep '^[^ ][ CM]' |
+                 # First column only, filter duplicates
+                 sed -Ee 's/^(.).*$/\1/' | awk 'x[$0]++ == 0'
+        ) 
+
+    )
+    
+    svn_status[2]="$status"
+}
+
+# A short string to indicate the status of the current Subversion repository.
+function svn_status_formatter {
+    get_svn_status \
+       || return
+
+    local svn_status_revision="${svn_status[0]}"
+    local svn_status_branch="${svn_status[1]}"
+    local svn_status_symbol="${svn_status[2]}"
+       
+    printf " %s %s %s"           \
+        "$svn_status_revision"   \
+        "$svn_status_branch"     \
+        "$svn_status_symbol"    
+}
+
 # Replace placeholders of the style [home] with their actual values.
 function expand_prompt_template {
     local template="$1"
@@ -152,6 +206,7 @@ function expand_prompt_template {
         -e "s/\[window\]/${window}/g"               \
         -e 's/\[pwd \([0-9]\)\]/$(pwdn \1)/g'       \
         -e "s/\[git]/\$( $GIT_STATUS_FORMATTER )/g" \
+        -e "s/\[svn]/\$( $SVN_STATUS_FORMATTER )/g" \
         -e "s/%B/$pbold/g"                          \
         -e "s/%b/$pnobold/g"                        \
         -e "s/%I/$pitalic/g"                        \
@@ -186,7 +241,7 @@ function expand_prompt_template {
         
         # TODO: 
         #   *   hg status
-        #   *   svn status?
+        #   *   svn branch
 }
 
 # Allow for complex PS1 values to be set in a more succinct, readable fashion.

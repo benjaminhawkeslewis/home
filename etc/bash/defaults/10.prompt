@@ -11,9 +11,10 @@ PWDN_MAX_WORD='10'
 
 # Default prompt macros.
 GIT_STATUS_FORMATTER='git_status_formatter'
+SVN_STATUS_FORMATTER='svn_status_formatter'
          PROMPT_USER='${USER}@'
        PROMPT_WINDOW='%ccscr${WINDOW}%cn '
-        PS1_TEMPLATE='([window][user][host] %B[pwd 2]%b%cy[git]%cn)[%%] '
+        PS1_TEMPLATE='([window][user][host] %B[pwd 2]%b%cy[git][svn]%cn)[%%] '
   PS1_TITLE_TEMPLATE='${USER}@[host]'
         PS2_TEMPLATE='%B...%b> '
         PS3_TEMPLATE='Which? '
