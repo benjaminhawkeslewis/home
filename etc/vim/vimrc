@@ -6,6 +6,13 @@
 call pathogen#runtime_append_all_bundles()
 
 set guifont=Monaco:h14
+set expandtab
+set softtabstop=4
+set shiftwidth=4
+
+set syntax on
+
+autocmd FileType make set noexpandtab
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
