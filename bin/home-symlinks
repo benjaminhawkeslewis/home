@@ -5,15 +5,15 @@
 #       Create home symlinks
 
 cd $HOME
-ln -s $HOME/Projects/home/etc
-ln -s $HOME/Projects/home/share
-ln -s $HOME/Projects/home/var
+ln -si $HOME/Projects/home/etc
+ln -si $HOME/Projects/home/share
+ln -si $HOME/Projects/home/var
 mkdir -p $HOME/bin
 cd $HOME/bin
 pwd
-for f in `find $HOME/Projects/home/bin -type f` ; do ln -s $f ; done 
+for f in `find $HOME/Projects/home/bin -type f` ; do ln -si $f ; done 
 cd $HOME 
-for f in `find $HOME/Projects/home -maxdepth 1 -type f -name '.bash*'` ; do ln -s $f ; done 
-ln -s $HOME/etc/gitignore .gitignore
-ln -s $HOME/etc/vim .vim
-ln -s $HOME/etc/vimrc .vimrc
+for f in `find $HOME/Projects/home -maxdepth 1 -type f -name '.bash*'` ; do ln -si $f ; done 
+ln -si $HOME/etc/gitignore .gitignore
+ln -siT $HOME/etc/vim .vim
+ln -si $HOME/etc/vimrc .vimrc
