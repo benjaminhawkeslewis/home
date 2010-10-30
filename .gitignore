@@ -2,3 +2,4 @@
 */less_history
 .*.swp
 .DS_Store
+etc/vim/.netrwhist
