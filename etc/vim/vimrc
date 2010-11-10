@@ -4,13 +4,15 @@
 "       Separate out vim settings into files in ~/etc/vim/rc.
 
 call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+filetype plugin on
 
 set guifont=Monaco:h14
 set expandtab
 set softtabstop=4
 set shiftwidth=4
 
-set syntax on
+syntax enable
 
 autocmd FileType make set noexpandtab
 
@@ -25,4 +27,4 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType php set keywordprg=pman
 autocmd FileType c set omnifunc=ccomplete#Complete
 
-runtime! etc/vim/rc/*
+runtime! ~/etc/vim/rc/*

@@ -10,3 +10,9 @@
 [submodule "etc/vim/bundle/snipmate.vim"]
 	path = etc/vim/bundle/snipmate.vim
 	url = git://github.com/msanders/snipmate.vim.git
+[submodule "etc/vim/bundle/nerdcommenter"]
+	path = etc/vim/bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "etc/vim/bundle/nerdtree"]
+	path = etc/vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git

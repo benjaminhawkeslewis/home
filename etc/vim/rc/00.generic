@@ -9,39 +9,33 @@ set nocompatible
 :filetype plugin on
 "syntax on
 "set textwidth=78
-set cursorcolumn
+"set cursorcolumn
 "set cursorline
-set visualbell
-set tabstop=4
-set shiftwidth=4
-set smarttab
-set softtabstop=4
-set expandtab
-set autoindent
-set smartindent
-set number
-set ruler
-set showmatch               " Show matching brackets.
-set nobackup                " No backups
-set encoding=utf-8          " Set Unicode as the default encoding
+"set visualbell
+"set tabstop=4
+"set shiftwidth=4
+"set smarttab
+"set softtabstop=4
+"set expandtab
+"set autoindent
+"set smartindent
+"set number
+"set ruler
+"set showmatch               " Show matching brackets.
+"set nobackup                " No backups
+"set encoding=utf-8          " Set Unicode as the default encoding
 
-" Highlight Whitespace. Remember 'diw' to kill the tyranny of whitespace!
-highlight WhitespaceEOL ctermbg=red guibg=red
-match WhitespaceEOL /\s\+$/
-set wildmode=longest,list:longest,full
+"" Highlight Whitespace. Remember 'diw' to kill the tyranny of whitespace!
+"highlight WhitespaceEOL ctermbg=red guibg=red
+"match WhitespaceEOL /\s\+$/
+"set wildmode=longest,list:longest,full
 
 " Try to autocomplete with 'omni completion' on TAB
-function! CleverTab()
-   if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
-      return "\<Tab>"
-   else
-      return "\<C-X>\<C-O>"
-endfunction
-inoremap <Tab> <C-R>=CleverTab()<CR>
-
-
-
-
-
-
+"function! CleverTab()
+"   if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+"      return "\<Tab>"
+"   else
+"      return "\<C-X>\<C-O>"
+"endfunction
+"inoremap <Tab> <C-R>=CleverTab()<CR>
 
