@@ -18,7 +18,8 @@ set shiftwidth=4
 
 set ruler
 
-set syntax
+syntax enable
+syntax on
 
 autocmd FileType make set noexpandtab
 
