@@ -13,4 +13,4 @@ autocmd FileType mail set formatoptions+=n
 autocmd FileType mail set comments=n:>,fb:-,fb:* 
 
 " Check spelling
-autocmd FileType mail setlocal spell spelllang=en_gb
+autocmd FileType mail setlocal spell spelllang=en_us
