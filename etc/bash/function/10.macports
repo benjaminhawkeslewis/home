@@ -9,5 +9,5 @@ manpath_append  "${MACPORTS_BASE}/man"
 
 # [ -d "${PKGSRC_BASE}/etc/bash_completion.d" ] \
 #    && BASH_COMPLETION="${PKGSRC_BASE}/etc/bash_completion"
-
-BASH_COMPLETION="${MACPORTS_BASE}/etc/bash_completion"
+[ -d "${MACPORTS_BASE}/etc/bash_completion.d" ] \
+     && BASH_COMPLETION="${MACPORTS_BASE}/etc/bash_completion"

@@ -8,11 +8,17 @@ call pathogen#helptags()
 filetype plugin on
 
 set guifont=Monaco:h14
+
+" Turn off toolbar
+set go=-t
+
 set expandtab
 set softtabstop=4
 set shiftwidth=4
 
-syntax enable
+set ruler
+
+set syntax
 
 autocmd FileType make set noexpandtab
 
