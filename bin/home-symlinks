@@ -5,15 +5,21 @@
 #       Create home symlinks
 
 cd $HOME
-ln -si $HOME/Projects/home/etc
-ln -si $HOME/Projects/home/share
-ln -si $HOME/Projects/home/var
+test "`readlink $HOME/etc`" != $HOME/Projects/home/etc && ln -si $HOME/Projects/home/etc
+test "`readlink $HOME/share`" != $HOME/Projects/home/share && ln -si $HOME/Projects/home/share
+test "`readlink $HOME/var`" != $HOME/Projects/home/var && ln -si $HOME/Projects/home/var
 mkdir -p $HOME/bin
 cd $HOME/bin
-pwd
-for f in `find $HOME/Projects/home/bin -type f` ; do ln -si $f ; done 
+for f in `find $HOME/Projects/home/bin -type f` ; do
+    relative=${f#/root/Projects/home/bin/}
+    test "`readlink $HOME/bin/$relative`" != "$f" && ln -si $f ;
+done 
 cd $HOME 
-for f in `find $HOME/Projects/home -maxdepth 1 -type f -name '.bash*'` ; do ln -si $f ; done 
-ln -si $HOME/etc/gitignore .gitignore
-ln -siT $HOME/etc/vim .vim
-ln -si $HOME/etc/vimrc .vimrc
+for f in `find $HOME/Projects/home -maxdepth 1 -type f -name '.bash*'` ; do
+    relative=${f#/root/Projects/home/}
+    test "`readlink $HOME/$relative`" != "$f" && ln -si $f ;
+done 
+test "`readlink $HOME/.gitignore`" != $HOME/etc/gitignore && ln -si $HOME/etc/gitignore .gitignore
+test "`readlink $HOME/.vim`" != $HOME/etc/vim && test -d $HOME/.vim && rm -ri $HOME/.vim
+test "`readlink $HOME/.vim`" != $HOME/etc/vim && ln -siT $HOME/etc/vim .vim
+test "`readlink $HOME/.vimrc`" != $HOME/etc/vim/vimrc && ln -si $HOME/etc/vim/vimrc .vimrc
