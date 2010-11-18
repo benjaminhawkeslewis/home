@@ -19,13 +19,15 @@ set shiftwidth=4
 set ruler
 
 syntax enable
-syntax on
 
 autocmd FileType make set noexpandtab
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType javascript set expandtab
+autocmd FileType php set expandtab
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType html set expandtab
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
