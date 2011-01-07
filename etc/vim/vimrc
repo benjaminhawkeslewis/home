@@ -3,11 +3,20 @@
 "
 "       Separate out vim settings into files in ~/etc/vim/rc.
 
+filetype off
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
+
+filetype on
+
 filetype plugin on
 
+runtime! ~/etc/vim/rc/*
+
 set guifont=Monaco:h14
+" Rodent everywhere
+set mouse=a
+
 
 " Turn off toolbar
 set go=-t
@@ -17,6 +26,16 @@ set softtabstop=4
 set shiftwidth=4
 
 set ruler
+set laststatus=2
+
+" Mimic ruler with status line
+set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ 
+" Add syntastic warnings to status 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_enable_signs=1
 
 syntax enable
 
@@ -26,6 +45,7 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType javascript set expandtab
 autocmd FileType php set expandtab
+autocmd FileType php SyntasticEnable php
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType html set expandtab
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
@@ -35,5 +55,3 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 " http://bjori.blogspot.com/2010/01/unix-manual-pages-for-php-functions.html
 autocmd FileType php set keywordprg=pman
 autocmd FileType c set omnifunc=ccomplete#Complete
-
-runtime! ~/etc/vim/rc/*
