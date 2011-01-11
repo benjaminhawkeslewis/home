@@ -55,3 +55,8 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 " http://bjori.blogspot.com/2010/01/unix-manual-pages-for-php-functions.html
 autocmd FileType php set keywordprg=pman
 autocmd FileType c set omnifunc=ccomplete#Complete
+
+let php_htmlInStrings = 1
+let php_folding = 1
+let g:snips_author = 'Benjamin Hawkes-Lewis'
+let g:snips_email = 'benjamin.hawkes-lewis@imagini.net'

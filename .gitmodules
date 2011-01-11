@@ -19,3 +19,6 @@
 [submodule "etc/vim/bundle/syntastic"]
 	path = etc/vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+[submodule "etc/vim/bundle/taglist.vim"]
+	path = etc/vim/bundle/taglist.vim
+	url = git://github.com/vim-scripts/taglist.vim.git
