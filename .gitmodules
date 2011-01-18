@@ -22,3 +22,6 @@
 [submodule "etc/vim/bundle/taglist.vim"]
 	path = etc/vim/bundle/taglist.vim
 	url = git://github.com/vim-scripts/taglist.vim.git
+[submodule "etc/vim/bundle/vimroom"]
+	path = etc/vim/bundle/vimroom
+	url = https://github.com/mikewest/vimroom.git
