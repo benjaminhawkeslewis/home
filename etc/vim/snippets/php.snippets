@@ -1,8 +1,3 @@
-snippet foobar
-	bla bla bla
-	bla foo bar
-snippet bazzle
-	flibblecats
 # Documented class
 snippet doc_c
 	/**
@@ -10,23 +5,25 @@ snippet doc_c
 	 * 
 	 * ${2:description}
 	 *
-	 * @package ${3:package}
-	 * @subpackage ${4:subpackage}
-	 * @author `g:snips_author` (`g:snips_email`)
-	**/
+	 * @version     $Id$
+	 * @package     ${3:package}
+	 * @subpackage  ${4:subpackage}
+	 * @author      `g:snips_author` (`g:snips_email`)
+	 */
 	
 	/**
 	 * $1
 	 * 
 	 * $2
 	 *
-	 * @package $3
-	 * @subpackage $4
-	 * @author `g:snips_author` (`g:snips_email`)
-	**/
-	class ${7:class_name}
+	 * @version     $Id$
+	 * @package     $3
+	 * @subpackage  $4
+	 * @author      `g:snips_author` (`g:snips_email`)
+	 */
+	class ${5:class_name}
 	{
-		${8}
+		${6}
 	}
 # Documented interface
 snippet doc_i
@@ -35,20 +32,22 @@ snippet doc_i
 	 * 
 	 * ${2:description}
 	 *
-	 * @package ${3:package}
-	 * @subpackage ${4:subpackage}
-	 * @author `g:snips_author` (`g:snips_email`)
-	**/
+	 * @version     $Id$
+	 * @package     ${3:package}
+	 * @subpackage  ${4:subpackage}
+	 * @author      `g:snips_author` (`g:snips_email`)
+	 */
 	
 	/**
 	 * $1 interface
 	 * 
 	 * $2
 	 *
-	 * @package $3
-	 * @subpackage $4
-	 * @author `g:snips_author` (`g:snips_email`)
-	**/
+	 * @version     $Id$
+	 * @package     $3
+	 * @subpackage  $4
+	 * @author      `g:snips_author` (`g:snips_email`)
+	 */
 	interface ${5:interface_name}
 	{
 		${6}
@@ -57,19 +56,23 @@ snippet doc_i
 snippet doc_v
 	/**
 	 * ${1:undocumented class variable}
-	 *
 	 * @var ${2:string}
-	 **/
-	private $${3:var_name}};${5}
+	 */
+	private $${3:var_name};${5}
 # Documented function
 snippet doc_f
 	/**
 	 * ${4:undocumented function}
 	 *
-	 * @return ${5:void}
 	 * @author `g:snips_author` (`g:snips_email`)
-	 **/
+	 *
+	 * @return ${5:void}
+	 */
 	${1:public} function ${2}(${3})
 	{
 		${7}
 	}
+snippet @author
+	@author Benjamin Hawkes-Lewis (benjamin.hawkes-lewis@imagini.net)
+snippet @expectedError
+	@expectedException PHPUnit_Framework_Error

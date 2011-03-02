@@ -25,3 +25,6 @@
 [submodule "etc/vim/bundle/vimroom"]
 	path = etc/vim/bundle/vimroom
 	url = https://github.com/mikewest/vimroom.git
+[submodule "etc/vim/bundle/phpcomplete.vim/autoload"]
+	path = etc/vim/bundle/phpcomplete.vim/autoload
+	url = git://github.com/shawncplus/phpcomplete.vim.git

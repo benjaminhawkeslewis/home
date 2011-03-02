@@ -16,7 +16,8 @@ runtime! ~/etc/vim/rc/*
 set guifont=Monaco:h14
 " Rodent everywhere
 set mouse=a
-
+" Fix window resizing in vim
+set ttymouse=xterm2
 
 " Turn off toolbar
 set go=-t
@@ -24,7 +25,7 @@ set go=-t
 set expandtab
 set softtabstop=4
 set shiftwidth=4
-
+set tabstop=4
 set ruler
 set laststatus=2
 
@@ -44,7 +45,8 @@ autocmd FileType make set noexpandtab
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType javascript set expandtab
-autocmd FileType php set expandtab
+autocmd FileType php set autoindent
+autocmd Filetype javascript set autoindent
 autocmd FileType php SyntasticEnable php
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType html set expandtab
@@ -53,10 +55,47 @@ autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
 " http://bjori.blogspot.com/2010/01/unix-manual-pages-for-php-functions.html
+" Press K on PHP builtins
 autocmd FileType php set keywordprg=pman
+
 autocmd FileType c set omnifunc=ccomplete#Complete
 
 let php_htmlInStrings = 1
 let php_folding = 1
 let g:snips_author = 'Benjamin Hawkes-Lewis'
 let g:snips_email = 'benjamin.hawkes-lewis@imagini.net'
+
+" vimroom configuration
+let g:vimroom_width = 80
+let g:vimroom_sidebar_height = 0
+let g:vimroom_background = 'Black'
+
+function! s:ExecuteInShell(command)
+        let command = join(map(split(a:command), 'expand(v:val)'))
+        let winnr = bufwinnr('^' . command . '$')
+        silent! execute  winnr < 0 ? 'botright new ' . fnameescape(command) : winnr . 'wincmd w'
+        setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
+        echo 'Execute ' . command . '...'
+        silent! execute 'silent %!'. command
+        silent! execute 'resize ' . line('$')
+        silent! redraw
+        silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
+        silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>'
+        echo 'Shell command ' . command . ' executed.'
+endfunction
+
+command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
+
+" Make comments easier to see
+hi Comment ctermfg=Magenta
+" Make directories easier to see
+hi Directory ctermfg=Green
+
+" Make errors possible to see
+hi SpellBad term=standout ctermfg=7 ctermbg=1
+
+" ChangeLog filetype config
+let g:changelog_spacing_errors = 0
+:hi link ChangelogError Error
+let g:changelog_username = 'Benjamin Hawkes-Lewis <benjamin.hawkes-lewis@visualdna.com>'
+
