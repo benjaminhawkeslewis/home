@@ -46,7 +46,7 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType javascript set expandtab
 autocmd FileType php set autoindent
-# Non-manual fold methods seem to cause Vim to slow down
+" Non-manual fold methods seem to cause Vim to slow down
 autocmd FileType php set foldmethod=manual
 autocmd FileType php set foldlevel=2
 autocmd Filetype javascript set autoindent
