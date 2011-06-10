@@ -23,3 +23,4 @@ test "`readlink $HOME/.gitignore`" != $HOME/etc/gitignore && ln -si $HOME/etc/gi
 test "`readlink $HOME/.vim`" != $HOME/etc/vim && test -d $HOME/.vim && rm -ri $HOME/.vim
 test "`readlink $HOME/.vim`" != $HOME/etc/vim && ln -siT $HOME/etc/vim .vim
 test "`readlink $HOME/.vimrc`" != $HOME/etc/vim/vimrc && ln -si $HOME/etc/vim/vimrc .vimrc
+test "`readlink $HOME/.tmux.conf`" != $HOME/etc/tmux/tmux.conf && ln -si $HOME/etc/tmux/tmux.conf .tmux.conf

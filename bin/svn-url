@@ -1,0 +1,14 @@
+#! /usr/bin/env bash
+
+# Extract URL from svn info. Defaults to getting subversion info of current
+# directory.
+#
+# Example usage:
+#
+# svn-url
+#
+# svn-url foo.c
+
+set -e
+
+svn info $1 | grep -P -o '(?<=^URL: ).*$'
