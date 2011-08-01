@@ -1,10 +1,8 @@
 # Documented class
 snippet doc_c
 	/**
-	 * ${1:undocumented class}
+	 * ${1:undocumented class} class
 	 * 
-	 * ${2:description}
-	 *
 	 * @version     $Id$
 	 * @package     ${3:package}
 	 * @subpackage  ${4:subpackage}
@@ -14,7 +12,7 @@ snippet doc_c
 	/**
 	 * $1
 	 * 
-	 * $2
+	 * ${2:description}
 	 *
 	 * @version     $Id$
 	 * @package     $3
@@ -25,13 +23,57 @@ snippet doc_c
 	{
 		${6}
 	}
+# Documented unit test class
+snippet doc_utc
+	/**
+	 * ${1:undocumented class} unit test class
+	 * 
+	 * @version     $Id$
+	 * @package     ${2:package}
+	 * @subpackage  ${3:subpackage}
+	 * @author      `g:snips_author` (`g:snips_email`)
+	 */
+	
+	/**
+	 * $1 unit test
+	 *
+	 * @version     $Id$
+	 * @package     $2
+	 * @subpackage  ${3:subpackage}
+	 * @author      `g:snips_author` (`g:snips_email`)
+	 */
+	class ${4:class_name} extends ${5:PHPUnit_Framework_TestCase}
+	{
+		${6}
+	}
+# Documented integration test class
+snippet doc_itc
+	/**
+	 * ${1:undocumented class} integration test class
+	 * 
+	 * @version     $Id$
+	 * @package     ${2:package}
+	 * @subpackage  ${3:subpackage}
+	 * @author      `g:snips_author` (`g:snips_email`)
+	 */
+	
+	/**
+	 * $1 integration test
+	 *
+	 * @version     $Id$
+	 * @package     $2
+	 * @subpackage  ${3:subpackage}
+	 * @author      `g:snips_author` (`g:snips_email`)
+	 */
+	class ${4:class_name} extends ${5:PHPUnit_Framework_TestCase}
+	{
+		${6}
+	}
 # Documented interface
 snippet doc_i
 	/**
-	 * ${1:undocumented interface}
+	 * ${1:undocumented interface} interface
 	 * 
-	 * ${2:description}
-	 *
 	 * @version     $Id$
 	 * @package     ${3:package}
 	 * @subpackage  ${4:subpackage}
@@ -41,7 +83,7 @@ snippet doc_i
 	/**
 	 * $1 interface
 	 * 
-	 * $2
+	 * ${2:description}
 	 *
 	 * @version     $Id$
 	 * @package     $3
@@ -62,17 +104,18 @@ snippet doc_v
 # Documented function
 snippet doc_f
 	/**
-	 * ${4:undocumented function}
+	 * ${1:undocumented function}
 	 *
 	 * @author `g:snips_author` (`g:snips_email`)
 	 *
 	 * @return ${5:void}
 	 */
-	${1:public} function ${2}(${3})
+	${3:public} function ${2}(${4})
 	{
 		${7}
 	}
 snippet @author
-	@author Benjamin Hawkes-Lewis (benjamin.hawkes-lewis@imagini.net)
+	@author `g:snips_author` `g:snips_email`)
 snippet @expectedError
 	@expectedException PHPUnit_Framework_Error
+

@@ -28,3 +28,6 @@
 [submodule "etc/vim/bundle/phpcomplete.vim/autoload"]
 	path = etc/vim/bundle/phpcomplete.vim/autoload
 	url = git://github.com/shawncplus/phpcomplete.vim.git
+[submodule "etc/vim/bundle/ultisnips"]
+	path = etc/vim/bundle/ultisnips
+	url = https://github.com/rygwdn/ultisnips
