@@ -11,6 +11,8 @@ filetype on
 
 filetype plugin on
 
+
+
 runtime! ~/etc/vim/rc/*
 
 set guifont=Monaco:h14
@@ -40,6 +42,11 @@ let g:syntastic_enable_signs=1
 
 syntax enable
 
+" Variables used in SnipMate snippets
+let g:snips_author = 'Benjamin Hawkes-Lewis'
+let g:snips_email = 'benjamin.hawkes-lewis@imagini.net'
+
+
 autocmd FileType make set noexpandtab
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
@@ -57,6 +64,8 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
+autocmd FileType php set colorcolumn=80
+
 " http://bjori.blogspot.com/2010/01/unix-manual-pages-for-php-functions.html
 " Press K on PHP builtins
 autocmd FileType php set keywordprg=pman
@@ -65,8 +74,6 @@ autocmd FileType c set omnifunc=ccomplete#Complete
 
 let php_htmlInStrings = 1
 let php_folding = 1
-let g:snips_author = 'Benjamin Hawkes-Lewis'
-let g:snips_email = 'benjamin.hawkes-lewis@imagini.net'
 
 " vimroom configuration
 let g:vimroom_width = 80
