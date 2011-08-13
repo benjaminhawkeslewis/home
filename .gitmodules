@@ -1,30 +1,40 @@
 [submodule "etc/vim/bundle/jslint.vim"]
 	path = etc/vim/bundle/jslint.vim
 	url = http://github.com/hallettj/jslint.vim.git
+	ignore = untracked
 [submodule "etc/vim/bundle/vim-surround"]
 	path = etc/vim/bundle/vim-surround
 	url = http://github.com/tpope/vim-surround.git
+	ignore = untracked
 [submodule "etc/vim/bundle/vim-align"]
 	path = etc/vim/bundle/vim-align
 	url = http://github.com/tsaleh/vim-align.git
+	ignore = untracked
 [submodule "etc/vim/bundle/nerdcommenter"]
 	path = etc/vim/bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
+	ignore = untracked
 [submodule "etc/vim/bundle/nerdtree"]
 	path = etc/vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
+	ignore = untracked
 [submodule "etc/vim/bundle/syntastic"]
 	path = etc/vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+	ignore = untracked
 [submodule "etc/vim/bundle/taglist.vim"]
 	path = etc/vim/bundle/taglist.vim
 	url = git://github.com/vim-scripts/taglist.vim.git
+	ignore = untracked
 [submodule "etc/vim/bundle/vimroom"]
 	path = etc/vim/bundle/vimroom
 	url = https://github.com/mikewest/vimroom.git
+	ignore = untracked
 [submodule "etc/vim/bundle/phpcomplete.vim/autoload"]
 	path = etc/vim/bundle/phpcomplete.vim/autoload
 	url = git://github.com/shawncplus/phpcomplete.vim.git
+	ignore = untracked
 [submodule "etc/vim/bundle/ultisnips"]
 	path = etc/vim/bundle/ultisnips
 	url = https://github.com/rygwdn/ultisnips
+	ignore = untracked
