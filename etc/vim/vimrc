@@ -3,17 +3,67 @@
 "
 "       Separate out vim settings into files in ~/etc/vim/rc.
 
+" set runtimepath=~/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim72,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after
+
+" Normally we use vim-extensions. If you want true vi-compatibility
+" remove change the following statements
+set nocompatible	" Use Vim defaults instead of 100% vi compatibility
+set backspace=indent,eol,start	" more powerful backspacing
+
+" Now we set some defaults for the editor
+set history=1000 " keep 1000 lines of command line history
+set ruler		 " show the cursor position all the time
+
+" NB debian warns modelines have historically been a source of security/resource
+" vulnerabilities -- disable by default, even when 'nocompatible' is set
+set modeline
+
+" Suffixes that get lower priority when doing tab completion for filenames.
+" These are files we are not likely to want to edit or read.
+set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
+
+" We know xterm-debian is a color terminal
+if &term =~ "xterm-debian" || &term =~ "xterm-xfree86"
+  set t_Co=16
+  set t_Sf=[3%dm
+  set t_Sb=[4%dm
+endif
+
+" Some Debian-specific things
+if has("autocmd")
+  " set mail filetype for reportbug's temp files
+  augroup debian
+    au BufRead reportbug.*		set ft=mail
+    au BufRead reportbug-*		set ft=mail
+  augroup END
+endif
+
+" Set paper size from /etc/papersize if available (Debian-specific)
+if filereadable("/etc/papersize")
+  let s:papersize = matchstr(readfile('/etc/papersize', '', 1), '\p*')
+  if strlen(s:papersize)
+    exe "set printoptions+=paper:" . s:papersize
+  endif
+endif
+
+if has('gui_running')
+  " Make shift-insert work like in Xterm
+  map <S-Insert> <MiddleMouse>
+  map! <S-Insert> <MiddleMouse>
+endif
+
 filetype off
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
 filetype on
-
 filetype plugin on
 
-
-
 runtime! ~/etc/vim/rc/*
+
+" Turn on wildmenu for command-line completion
+set wildchar=<Tab> wildmenu wildmode=full
+
 
 set guifont=Monaco:h14
 " Rodent everywhere
@@ -24,13 +74,17 @@ set ttymouse=xterm2
 " Turn off toolbar
 set go=-t
 
+" Soft spaces - 4 spaces per tab
 set expandtab
 set softtabstop=4
 set shiftwidth=4
 set tabstop=4
+
+" Show line numbers
+set number
+
 set ruler
 set laststatus=2
-
 " Mimic ruler with status line
 set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ 
 " Add syntastic warnings to status 
@@ -44,36 +98,7 @@ syntax enable
 
 " Variables used in SnipMate snippets
 let g:snips_author = 'Benjamin Hawkes-Lewis'
-let g:snips_email = 'benjamin.hawkes-lewis@imagini.net'
-
-
-autocmd FileType make set noexpandtab
-
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType javascript set expandtab
-autocmd FileType php set autoindent
-" Non-manual fold methods seem to cause Vim to slow down
-autocmd FileType php set foldmethod=manual
-autocmd FileType php set foldlevel=2
-autocmd Filetype javascript set autoindent
-autocmd FileType php SyntasticEnable php
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType html set expandtab
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-
-autocmd FileType php set colorcolumn=80
-
-" http://bjori.blogspot.com/2010/01/unix-manual-pages-for-php-functions.html
-" Press K on PHP builtins
-autocmd FileType php set keywordprg=pman
-
-autocmd FileType c set omnifunc=ccomplete#Complete
-
-let php_htmlInStrings = 1
-let php_folding = 1
+let g:snips_email = 'benjamin.hawkes-lewis@visualdna.com'
 
 " vimroom configuration
 let g:vimroom_width = 80
@@ -104,8 +129,68 @@ hi Directory ctermfg=Green
 " Make errors possible to see
 hi SpellBad term=standout ctermfg=7 ctermbg=1
 
-" ChangeLog filetype config
+""" Shell scripts
+
+" Assume Bash if not otherwise specified
+let g:is_bash = 1
+
+" Strip trailing whitespace on write
+autocmd FileType sh,bash,ksh autocmd BufWritePre <buffer> :%s/\s\+$//e
+
+""" Make
+
+autocmd FileType make set noexpandtab
+
+""" Python
+
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+
+""" PHP
+
+autocmd FileType php set autoindent
+" Non-manual fold methods seem to cause Vim to slow down
+autocmd FileType php set foldmethod=manual
+autocmd FileType php set foldlevel=2
+autocmd FileType php SyntasticEnable php
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType php set colorcolumn=81
+" http://bjori.blogspot.com/2010/01/unix-manual-pages-for-php-functions.html
+" Press K on PHP builtins
+autocmd FileType php set keywordprg=pman
+" Strip trailing whitespace on write
+autocmd FileType php autocmd BufWritePre <buffer> :%s/\s\+$//e
+" Syntax check via make
+autocmd FileType php set makeprg=php\ -derror_reporting=-1\ -ddisplay_errors=1\ -l\ %
+autocmd FileType php set errorformat=%m\ in\ %f\ on\ line\ %l,%-GErrors\ parsing\ %f,%-G
+
+let php_htmlInStrings = 1
+let php_folding = 1
+
+""" Javascript
+
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType javascript set expandtab
+autocmd Filetype javascript set autoindent
+
+""" HTML
+
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType html set expandtab
+
+""" CSS
+
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+
+""" XML
+
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+
+""" C
+
+autocmd FileType c set omnifunc=ccomplete#Complete
+
+""" ChangeLog
+
 let g:changelog_spacing_errors = 0
 :hi link ChangelogError Error
 let g:changelog_username = 'Benjamin Hawkes-Lewis <benjamin.hawkes-lewis@visualdna.com>'
-
