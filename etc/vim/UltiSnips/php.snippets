@@ -23,7 +23,7 @@ snippet file_c "Class with file and class DocBlocks"
  */
 class ${5:class_name}
 {
-	${6}
+    ${6}
 }
 endsnippet
 # Documented unit test class
@@ -49,62 +49,62 @@ snippet file_utc
  */
 class ${4:class_name} extends ${5:PHPUnit_Framework_TestCase}
 {
-	${6}
+    ${6}
 }
 endsnippet
 # Documented integration test class
 snippet file_itc
-	<?php
-	
-	/**
-	 * ${1:undocumented class} integration test class
-	 * 
-	 * @version     $Id$
-	 * @package     ${2:package}
-	 * @subpackage  ${3:subpackage}
-	 * @author      `!p snip.rv = snip.opt('g:snips_author', 'g:snips_author')` (`!p snip.rv = snip.opt('g:snips_email', 'g:snips_email')`)
-	 */
-	
-	/**
-	 * $1 integration test
-	 *
-	 * @version     $Id$
-	 * @package     $2
-	 * @subpackage  ${3:subpackage}
-	 * @author      `!p snip.rv = snip.opt('g:snips_author', 'g:snips_author')` (`!p snip.rv = snip.opt('g:snips_email', 'g:snips_email')`)
-	 */
-	class ${4:class_name} extends ${5:PHPUnit_Framework_TestCase}
-	{
-		${6}
-	}
+    <?php
+    
+    /**
+     * ${1:undocumented class} integration test class
+     * 
+     * @version     $Id$
+     * @package     ${2:package}
+     * @subpackage  ${3:subpackage}
+     * @author      `!p snip.rv = snip.opt('g:snips_author', 'g:snips_author')` (`!p snip.rv = snip.opt('g:snips_email', 'g:snips_email')`)
+     */
+    
+    /**
+     * $1 integration test
+     *
+     * @version     $Id$
+     * @package     $2
+     * @subpackage  ${3:subpackage}
+     * @author      `!p snip.rv = snip.opt('g:snips_author', 'g:snips_author')` (`!p snip.rv = snip.opt('g:snips_email', 'g:snips_email')`)
+     */
+    class ${4:class_name} extends ${5:PHPUnit_Framework_TestCase}
+    {
+        ${6}
+    }
 endsnippet
 # Documented interface
-snippet file_i
+snippet file_i "documented interface" !
 <?php
 
-	/**
-	 * ${1:undocumented interface} interface
-	 * 
-	 * @version     $Id$
-	 * @package     ${3:package}
-	 * @subpackage  ${4:subpackage}
-	 * @author      `!p snip.rv = snip.opt('g:snips_author', 'g:snips_author')` (`!p snip.rv = snip.opt('g:snips_email', 'g:snips_email')`)
-	 */
-	
-	/**
-	 * $1 interface
-	 * 
-	 * ${2:description}
-	 *
-	 * @version     $Id$
-	 * @package     $3
-	 * @subpackage  $4
-	 * @author      `!p snip.rv = snip.opt('g:snips_author', 'g:snips_author')` (`!p snip.rv = snip.opt('g:snips_email', 'g:snips_email')`)
-	 */
-	interface ${5:interface_name}
-	{
-		${6}
-	}
+/**
+ * ${1:undocumented interface} interface
+ * 
+ * @version     $Id$
+ * @package     ${3:package}
+ * @subpackage  ${4:subpackage}
+ * @author      `!p snip.rv = snip.opt('g:snips_author', 'g:snips_author')` (`!p snip.rv = snip.opt('g:snips_email', 'g:snips_email')`)
+ */
+
+/**
+ * $1 interface
+ * 
+ * ${2:description}
+ *
+ * @version     $Id$
+ * @package     $3
+ * @subpackage  $4
+ * @author      `!p snip.rv = snip.opt('g:snips_author', 'g:snips_author')` (`!p snip.rv = snip.opt('g:snips_email', 'g:snips_email')`)
+ */
+interface ${5:interface_name}
+{
+    ${6}
+}
 endsnippet
 # Documented variable
 snippet member
@@ -124,12 +124,12 @@ snippet method "Method"
  */
 ${3:public} function ${2}(${4})
 {
-	${7}
+    ${7}
 }
 endsnippet
 snippet @author
-	@author `!p snip.rv = snip.opt('g:snips_author', 'g:snips_author')` (`!p snip.rv = snip.opt('g:snips_email', 'g:snips_email')`)
+    @author `!p snip.rv = snip.opt('g:snips_author', 'g:snips_author')` (`!p snip.rv = snip.opt('g:snips_email', 'g:snips_email')`)
 endsnippet
 snippet @expectedError
-	@expectedException PHPUnit_Framework_Error
+    @expectedException PHPUnit_Framework_Error
 endsnippet
