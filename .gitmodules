@@ -34,7 +34,12 @@
 	path = etc/vim/bundle/phpcomplete.vim/autoload
 	url = git://github.com/shawncplus/phpcomplete.vim.git
 	ignore = untracked
-[submodule "etc/vim/bundle/ultisnips"]
-	path = etc/vim/bundle/ultisnips
-	url = https://github.com/rygwdn/ultisnips
-	ignore = untracked
+[submodule "etc/vim/bundle/AutoTag"]
+	path = etc/vim/bundle/AutoTag
+	url = https://github.com/vim-scripts/AutoTag.git
+[submodule "etc/vim/bundle/tslime.vim/plugin"]
+	path = etc/vim/bundle/tslime.vim/plugin
+	url = https://github.com/kikijump/tslime.vim.git
+[submodule "bundle/ultisnips"]
+	path = bundle/ultisnips
+	url = https://github.com/SirVer/ultisnips
