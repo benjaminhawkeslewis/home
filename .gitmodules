@@ -41,5 +41,5 @@
 	path = etc/vim/bundle/tslime.vim/plugin
 	url = https://github.com/kikijump/tslime.vim.git
 [submodule "etc/vim/bundle/ultisnips"]
-	path = bundle/ultisnips
+	path = etc/vim/bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips
