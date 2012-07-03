@@ -194,3 +194,20 @@ autocmd FileType c set omnifunc=ccomplete#Complete
 let g:changelog_spacing_errors = 0
 :hi link ChangelogError Error
 let g:changelog_username = 'Benjamin Hawkes-Lewis <benjamin.hawkes-lewis@visualdna.com>'
+
+""" Git Commit Message
+
+" Recognise lists when formatting
+autocmd FileType gitcommit set formatoptions+=n
+
+" GNU Changelog style bulleted lists AND hanging indented numbered lists:
+autocmd FileType gitcommit set formatlistpat=\\v^\\s*(\\ze[*]\\s+\\|\\d+[\\]:\\.\\)}\\t\ ]\\s*)
+
+" Ignore *-style comments in order not to format bulleted lists as comments:
+autocmd FileType gitcommit set comments=://,b:#,:%,:XCOMM,n:>,fb:-
+
+" Automatically load diff
+autocmd FileType gitcommit DiffGitCached
+
+""" Hive Query Language
+autocmd BufRead,BufNewFile *.q    setfiletype sql
