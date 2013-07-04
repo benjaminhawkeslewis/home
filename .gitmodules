@@ -46,3 +46,21 @@
 [submodule "etc/vim/bundle/file-line"]
 	path = etc/vim/bundle/file-line
 	url = https://github.com/bogado/file-line.git
+[submodule "etc/vim/bundle/unite.vim"]
+	path = etc/vim/bundle/unite.vim
+	url = git@github.com:Shougo/unite.vim.git
+[submodule "etc/vim/bundle/vim-fugitive"]
+	path = etc/vim/bundle/vim-fugitive
+	url = git@github.com:tpope/vim-fugitive.git
+[submodule "etc/vim/bundle/vim-sensible"]
+	path = etc/vim/bundle/vim-sensible
+	url = git@github.com:tpope/vim-sensible.git
+[submodule "etc/vim/bundle/vim-rsi"]
+	path = etc/vim/bundle/vim-rsi
+	url = git@github.com:tpope/vim-rsi.git
+[submodule "etc/vim/bundle/vim-tbone"]
+	path = etc/vim/bundle/vim-tbone
+	url = git@github.com:tpope/vim-tbone.git
+[submodule "etc/vim/bundle/vimproc.vim"]
+	path = etc/vim/bundle/vimproc.vim
+	url = git@github.com:Shougo/vimproc.vim.git

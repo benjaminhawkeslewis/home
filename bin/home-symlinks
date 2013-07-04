@@ -4,25 +4,68 @@
 #
 #       Create home symlinks
 
-cd $HOME
-test "`readlink $HOME/etc`" != $HOME/Projects/home/etc && ln -si $HOME/Projects/home/etc
-test "`readlink $HOME/share`" != $HOME/Projects/home/share && ln -si $HOME/Projects/home/share
-test "`readlink $HOME/var`" != $HOME/Projects/home/var && ln -si $HOME/Projects/home/var
-mkdir -p $HOME/bin
-cd $HOME/bin
-for f in `find $HOME/Projects/home/bin -type f` ; do
-    relative=${f#/root/Projects/home/bin/}
-    test "`readlink $HOME/bin/$relative`" != "$f" && ln -si $f ;
+checkout_dir=$( cd $(dirname $0)/.. ; pwd -P )
+
+symlink() {
+    source=$1
+    destination=$2
+
+    if test "${destination%%*/}" = ""
+    then
+        target_directory=$destination
+        destination="$target_directory$(basename $source)"
+    else
+        target_directory=$(dirname $destination)
+    fi
+
+    if [ "$(readlink $destination)" != "$source" ]
+    then
+        if [ -e $destination ]
+        then
+            printf "Destination $destination already exists!\n" >&2
+            printf "Diff of $destination vs. $source:\n" >&2
+            diff $destination $source >&2
+            printf "Stopping to resolve conflict.\n" >&2
+            exit
+        else
+            # Remove any broken symbolic link
+
+            if [ -L $destination ]
+            then
+                rm $destination
+            fi
+
+            # Can safely go ahead and make the symlink
+            mkdir -p $target_directory
+            ln -s $source $destination && printf "Symlinked $destination to $source\n" >&2
+        fi
+    fi
+}
+
+printf "\nSymlinking $checkout_dir/{etc,share,var} into $HOME / …\n\n"
+
+symlink $checkout_dir/etc $HOME/
+symlink $checkout_dir/share $HOME/
+symlink $checkout_dir/var $HOME/
+
+printf "\nSymlinking all owner-executable files in $checkout_dir/bin/ into $HOME/bin/ …\n\n"
+
+for f in $(find $checkout_dir/bin -type f -perm +0100)
+do
+    symlink $f $HOME/bin/
 done
-cd $HOME
-for f in `find $HOME/Projects/home -maxdepth 1 -type f -name '.bash*'` ; do
-    relative=${f#/root/Projects/home/}
-    test "`readlink $HOME/$relative`" != "$f" && ln -si $f ;
-done
-test "`readlink $HOME/.gitignore`" != $HOME/etc/gitignore && ln -si $HOME/etc/gitignore .gitignore
-test "`readlink $HOME/.vim`" != $HOME/etc/vim && test -d $HOME/.vim && rm -ri $HOME/.vim
-test "`readlink $HOME/.vim`" != $HOME/etc/vim && ln -siT $HOME/etc/vim .vim
-test "`readlink $HOME/.vimrc`" != $HOME/etc/vim/vimrc && ln -si $HOME/etc/vim/vimrc .vimrc
-test "`readlink $HOME/.tmux.conf`" != $HOME/etc/tmux/tmux.conf && ln -si $HOME/etc/tmux/tmux.conf .tmux.conf
-test "`readlink $HOME/.ssh/rc`" != $HOME/etc/ssh/rc && ln -si $HOME/etc/ssh/rc .ssh/rc
+
+printf "\nSymlinking configuration files in $HOME/etc into expected dotfiles in $HOME …\n\n"
+
+symlink $checkout_dir/.bashrc $HOME/
+symlink $checkout_dir/.bash_profile $HOME/
+symlink $checkout_dir/.bash_logout $HOME/
+
+symlink $HOME/etc/.gitignore $HOME/
+symlink $HOME/etc/tmux/tmux.conf $HOME/.tmux.conf
+
+symlink $HOME/etc/vim $HOME/.vim
+symlink $HOME/etc/vim/vimrc $HOME/.vimrc
+
+symlink $HOME/etc/ssh/rc $HOME/.ssh/rc
 chmod 755 ~/.ssh/rc
