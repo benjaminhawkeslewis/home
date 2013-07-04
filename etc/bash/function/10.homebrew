@@ -2,3 +2,7 @@
 # -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
 #
 #       Setup the paths of the homebrew packaging system.
+
+if [ $(command -v brew) -a -f "$(brew --prefix)/etc/bash_completion" ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
