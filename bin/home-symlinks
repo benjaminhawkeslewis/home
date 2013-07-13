@@ -6,6 +6,10 @@
 
 checkout_dir=$( cd $(dirname $0)/.. ; pwd -P )
 
+readlink_recursive() {
+   python -c 'import os,sys;print os.path.realpath(sys.argv[1])' $1
+}
+
 symlink() {
     source=$1
     destination=$2
@@ -18,7 +22,7 @@ symlink() {
         target_directory=$(dirname $destination)
     fi
 
-    if [ "$(readlink $destination)" != "$source" ]
+    if [ "$(readlink_recursive $destination)" != "$(readlink_recursive $source)" ]
     then
         if [ -e $destination ]
         then
