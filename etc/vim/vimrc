@@ -53,7 +53,13 @@ if has('gui_running')
 endif
 
 filetype off
-call pathogen#runtime_append_all_bundles()
+
+" Pathogen
+
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect()
+
+"call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
 filetype on
