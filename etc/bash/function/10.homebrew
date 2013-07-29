@@ -3,6 +3,8 @@
 #
 #       Setup the paths of the homebrew packaging system.
 
-if [ $(command -v brew) -a -f "$(brew --prefix)/etc/bash_completion" ]; then
-    . $(brew --prefix)/etc/bash_completion
+if test -x "$(command -v brew)"; then
+    if test -f "$(brew --prefix)/etc/bash_completion" ; then
+        . $(brew --prefix)/etc/bash_completion
+    fi
 fi
