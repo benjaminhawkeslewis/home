@@ -151,6 +151,13 @@ autocmd FileType make set noexpandtab
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 
+""" Java
+autocmd FileType java set autoindent
+autocmd FileType java SyntasticEnable java
+autocmd FileType java set colorcolumn=81
+" Strip trailing whitespace on write
+autocmd FileType java autocmd BufWritePre <buffer> :%s/\s\+$//e
+
 """ PHP
 
 autocmd FileType php set autoindent
