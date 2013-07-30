@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-if test -f "$SSH_AUTH_SOCK" -a "$SSH_AUTH_SOCK" ; then
-    ln -sf $SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock
+if test -r "$SSH_AUTH_SOCK" -a "$SSH_AUTH_SOCK" != "$HOME/.ssh/ssh_auth_sock" ; then
+    OLD_SSH_AUTH_SOCK="$SSH_AUTH_SOCK"
+    ln -sf $SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
+    echo Syminked ${HOME}/.ssh/ssh_auth_sock to $OLD_SSH_AUTH_SOCK >&2
 fi
 
 # Set up X11 when forwarding
