@@ -67,3 +67,9 @@
 [submodule "etc/vim/bundle/vim-pathogen"]
 	path = etc/vim/bundle/vim-pathogen
 	url = git@github.com:tpope/vim-pathogen.git
+[submodule "etc/vim/bundle/SyntaxAttr.vim"]
+	path = etc/vim/bundle/SyntaxAttr.vim
+	url = https://github.com/vim-scripts/SyntaxAttr.vim.git
+[submodule "etc/vim/bundle/Colour-Sampler-Pack"]
+	path = etc/vim/bundle/Colour-Sampler-Pack
+	url = https://github.com/vim-scripts/Colour-Sampler-Pack.git
