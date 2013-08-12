@@ -4,3 +4,4 @@
 "       Vim JavaScript settings.
 
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType javascript set expandtab

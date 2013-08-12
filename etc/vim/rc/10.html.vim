@@ -23,3 +23,7 @@ endfunction
 
 autocmd FileType html map <silent> <c-h> :call HtmlEscape()<CR>
 autocmd FileType html map <silent> <c-u> :call HtmlUnescape()<CR>
+
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType html set expandtab
+

@@ -8,11 +8,6 @@
 " Normally we use vim-extensions. If you want true vi-compatibility
 " remove change the following statements
 set nocompatible	" Use Vim defaults instead of 100% vi compatibility
-set backspace=indent,eol,start	" more powerful backspacing
-
-" Now we set some defaults for the editor
-set history=1000 " keep 1000 lines of command line history
-set ruler		 " show the cursor position all the time
 
 " NB debian warns modelines have historically been a source of security/resource
 " vulnerabilities -- disable by default, even when 'nocompatible' is set
@@ -24,7 +19,6 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 
 " We know xterm-debian is a color terminal
 if &term =~ "xterm-debian" || &term =~ "xterm-xfree86"
-  set t_Co=16
   set t_Sf=[3%dm
   set t_Sb=[4%dm
 endif
@@ -52,24 +46,44 @@ if has('gui_running')
   map! <S-Insert> <MiddleMouse>
 endif
 
-filetype off
-
 " Pathogen
+" To disable a plugin, add it's bundle name to the following list
+let g:pathogen_disabled = []
 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
+
+"call add(g:pathogen_disabled, 'AutoTag')
+"call add(g:pathogen_disabled, 'Colour-Sampler-Pack')
+"call add(g:pathogen_disabled, 'file-line')
+call add(g:pathogen_disabled, 'jslint.vim')
+"call add(g:pathogen_disabled, 'nerdcommenter')
+"call add(g:pathogen_disabled, 'numbers.vim')
+"call add(g:pathogen_disabled, 'nerdtree')
+"call add(g:pathogen_disabled, 'phpcomplete.vim')
+"call add(g:pathogen_disabled, 'syntastic')
+"call add(g:pathogen_disabled, 'SyntaxAttr.vim')
+"call add(g:pathogen_disabled, 'taglist.vim')
+call add(g:pathogen_disabled, 'tslime.vim')
+"call add(g:pathogen_disabled, 'unite.vim')
+"call add(g:pathogen_disabled, 'vim-align')
+"call add(g:pathogen_disabled, 'vim-fugitive')
+"call add(g:pathogen_disabled, 'vimproc.vim')
+call add(g:pathogen_disabled, 'vimroom')
+"call add(g:pathogen_disabled, 'vim-rsi')
+"call add(g:pathogen_disabled, 'vim-sensible')
+"call add(g:pathogen_disabled, 'vim-surround')
+"call add(g:pathogen_disabled, 'vim-tbone')
+
 execute pathogen#infect()
-
-"call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
-
-filetype on
-filetype plugin on
 
 runtime! ~/etc/vim/rc/*
 
-" Turn on wildmenu for command-line completion
-set wildchar=<Tab> wildmenu wildmode=full
+set modeline
 
+" Configure wildmenu for command-line completion
+set wildchar=<Tab>
+set wildmode=full
 
 set guifont=Monaco:h14
 " Rodent everywhere
@@ -89,24 +103,26 @@ set tabstop=4
 " Show line numbers
 set number
 
-set ruler
-set laststatus=2
 " Mimic ruler with status line
-set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ 
-" Add syntastic warnings to status 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\
 
+""" syntastic setup
+" Use >> to display syntax errors in the sign column
 let g:syntastic_enable_signs=1
+if exists("g:loaded_syntastic_plugin")
+    " Add syntastic warnings to status
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
+endif
 
 syntax enable
 
-" Variables used in SnipMate snippets
+""" snipmate setup
 let g:snips_author = 'Benjamin Hawkes-Lewis'
 let g:snips_email = 'benjamin.hawkes-lewis@visualdna.com'
 
-" vimroom configuration
+""" vimroom setup
 let g:vimroom_width = 80
 let g:vimroom_sidebar_height = 0
 let g:vimroom_background = 'Black'
@@ -135,92 +151,16 @@ hi Directory ctermfg=Green
 " Make errors possible to see
 hi SpellBad term=standout ctermfg=7 ctermbg=1
 
+" Highlight lines longer than 80 chars
+set colorcolumn=80
+
 """ Shell scripts
 
-" Assume Bash if not otherwise specified
+" Assume Shell scripts are Bash if not otherwise specified
 let g:is_bash = 1
 
 " Strip trailing whitespace on write
-autocmd FileType sh,bash,ksh autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd BufWritePre <buffer> :%s/\s\+$//e
 
-""" Make
-
-autocmd FileType make set noexpandtab
-
-""" Python
-
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-
-""" Java
-autocmd FileType java set autoindent
-autocmd FileType java SyntasticEnable java
-autocmd FileType java set colorcolumn=81
-" Strip trailing whitespace on write
-autocmd FileType java autocmd BufWritePre <buffer> :%s/\s\+$//e
-
-""" PHP
-
-autocmd FileType php set autoindent
-" Non-manual fold methods seem to cause Vim to slow down
-autocmd FileType php set foldmethod=manual
-autocmd FileType php set foldlevel=2
-autocmd FileType php SyntasticEnable php
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-autocmd FileType php set colorcolumn=81
-" http://bjori.blogspot.com/2010/01/unix-manual-pages-for-php-functions.html
-" Press K on PHP builtins
-autocmd FileType php set keywordprg=pman
-" Strip trailing whitespace on write
-autocmd FileType php autocmd BufWritePre <buffer> :%s/\s\+$//e
-" Syntax check via make
-autocmd FileType php set makeprg=php\ -derror_reporting=-1\ -ddisplay_errors=1\ -l\ %
-autocmd FileType php set errorformat=%m\ in\ %f\ on\ line\ %l,%-GErrors\ parsing\ %f,%-G
-
-let php_htmlInStrings = 1
-let php_folding = 1
-
-""" Javascript
-
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType javascript set expandtab
-autocmd Filetype javascript set autoindent
-
-""" HTML
-
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType html set expandtab
-
-""" CSS
-
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-
-""" XML
-
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-
-""" C
-
-autocmd FileType c set omnifunc=ccomplete#Complete
-
-""" ChangeLog
-
-let g:changelog_spacing_errors = 0
-:hi link ChangelogError Error
-let g:changelog_username = 'Benjamin Hawkes-Lewis <benjamin.hawkes-lewis@visualdna.com>'
-
-""" Git Commit Message
-
-" Recognise lists when formatting
-autocmd FileType gitcommit set formatoptions+=n
-
-" GNU Changelog style bulleted lists AND hanging indented numbered lists:
-autocmd FileType gitcommit set formatlistpat=\\v^\\s*(\\ze[*]\\s+\\|\\d+[\\]:\\.\\)}\\t\ ]\\s*)
-
-" Ignore *-style comments in order not to format bulleted lists as comments:
-autocmd FileType gitcommit set comments=://,b:#,:%,:XCOMM,n:>,fb:-
-
-" Automatically load diff
-autocmd FileType gitcommit DiffGitCached
-
-""" Hive Query Language
-autocmd BufRead,BufNewFile *.q    setfiletype sql
+"""Set background dark as Vim's detection fails so much
+set background=dark

@@ -73,3 +73,6 @@
 [submodule "etc/vim/bundle/Colour-Sampler-Pack"]
 	path = etc/vim/bundle/Colour-Sampler-Pack
 	url = https://github.com/vim-scripts/Colour-Sampler-Pack.git
+[submodule "etc/vim/bundle/numbers.vim"]
+	path = etc/vim/bundle/numbers.vim
+	url = https://github.com/myusuf3/numbers.vim
