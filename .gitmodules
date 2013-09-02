@@ -76,3 +76,6 @@
 [submodule "etc/vim/bundle/numbers.vim"]
 	path = etc/vim/bundle/numbers.vim
 	url = https://github.com/myusuf3/numbers.vim
+[submodule "etc/vim/bundle/unicode.vim"]
+	path = etc/vim/bundle/unicode.vim
+	url = https://github.com/chrisbra/unicode.vim
