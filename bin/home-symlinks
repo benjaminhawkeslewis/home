@@ -65,7 +65,6 @@ symlink $checkout_dir/.bashrc $HOME/
 symlink $checkout_dir/.bash_profile $HOME/
 symlink $checkout_dir/.bash_logout $HOME/
 
-symlink $HOME/etc/.gitignore $HOME/
 symlink $HOME/etc/tmux/tmux.conf $HOME/.tmux.conf
 
 symlink $HOME/etc/vim $HOME/.vim
