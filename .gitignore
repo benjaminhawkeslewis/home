@@ -3,4 +3,5 @@
 .*.swp
 .DS_Store
 etc/vim/.netrwhist
+etc/vim/bundle/unicode.vim/doc/tags
 tags
