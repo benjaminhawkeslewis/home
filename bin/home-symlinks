@@ -4,11 +4,14 @@
 #
 #       Create home symlinks
 
-checkout_dir=$( cd $(dirname $0)/.. ; pwd -P )
-
 readlink_recursive() {
    python -c 'import os,sys;print os.path.realpath(sys.argv[1])' $1
 }
+
+checkout_dir=$( cd $(dirname "$(readlink_recursive $0)")/.. ; pwd -P )
+
+printf "Symlinking from checkout dir: $checkout_dir\n\n"
+
 
 symlink() {
     source=$1
@@ -56,6 +59,7 @@ printf "\nSymlinking all owner-executable files in $checkout_dir/bin/ into $HOME
 
 for f in $(find $checkout_dir/bin -type f -perm +0100)
 do
+    printf "\n    Symlinking $f to $HOME/bin/ …\n\n"
     symlink $f $HOME/bin/
 done
 
