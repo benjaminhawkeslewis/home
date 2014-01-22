@@ -54,7 +54,9 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 
 "call add(g:pathogen_disabled, 'AutoTag')
 "call add(g:pathogen_disabled, 'Colour-Sampler-Pack')
+"call add(g:pathogen_disabled, 'dash.vim')
 "call add(g:pathogen_disabled, 'file-line')
+"call add(g:pathogen_disabled, 'funco.vim')
 call add(g:pathogen_disabled, 'jslint.vim')
 "call add(g:pathogen_disabled, 'nerdcommenter')
 "call add(g:pathogen_disabled, 'numbers.vim')

@@ -79,3 +79,9 @@
 [submodule "etc/vim/bundle/unicode.vim"]
 	path = etc/vim/bundle/unicode.vim
 	url = https://github.com/chrisbra/unicode.vim
+[submodule "etc/vim/bundle/funcoo.vim"]
+	path = etc/vim/bundle/funcoo.vim
+	url = https://github.com/rizzatti/funcoo.vim.git
+[submodule "etc/vim/bundle/dash.vim"]
+	path = etc/vim/bundle/dash.vim
+	url = https://github.com/rizzatti/dash.vim.git
