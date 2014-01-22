@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+function die {
+    printf '%s' "$1" >&2
+    exit $2
+}
+
+command -v brew >/dev/null || die "Cannot find Homebrew!"
+
+curl --silent --fail --output /dev/null http://www.google.com \
+    || die "Not connected to internet"
+
+updated=$(brew update || die "Brew update failed.")
+
+if [ "Already up-to-date." != "$(brew update)" ]
+then
+    echo "Updated ..."
+    if ( brew list | grep brew-desc >/dev/null )
+    then
+        while read -r line
+        do
+            brew desc "$line" 2>/dev/null || printf '%s\n' "$line"
+        done <<< "$updated"
+    fi
+fi
+brew upgrade || die "Brew upgrade failed."
