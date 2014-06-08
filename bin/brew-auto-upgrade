@@ -1,26 +1,57 @@
 #!/usr/bin/env bash
 
-function die {
-    printf '%s' "$1" >&2
+log () {
+    local IFS=' '
+    printf '%s\n' "$*" >&2
+}
+
+die () {
+    log "$1"
     exit $2
 }
 
-command -v brew >/dev/null || die "Cannot find Homebrew!"
+connected () {
+    curl --silent --fail --output /dev/null http://www.google.com
+}
 
-curl --silent --fail --output /dev/null http://www.google.com \
-    || die "Not connected to internet"
+check_connection_then_die () {
+    connected && die $@ || die "Lost internet connection.\n$1" $2
+}
 
-updated=$(brew update || die "Brew update failed.")
+command -v brew >/dev/null || die 'Cannot find Homebrew!' 1
 
+( connected && log 'Connected!' ) || exit  # Not connected to internet.
+
+updated=$( brew update ) || die 'Failed to update brews.' 1
 if [ "Already up-to-date." != "$(brew update)" ]
 then
-    echo "Updated ..."
+    log 'Updated brews:\n%s\n' "$updated"
+    log '\nReparsing with brew-desc\n'
     if ( brew list | grep brew-desc >/dev/null )
     then
         while read -r line
         do
-            brew desc "$line" 2>/dev/null || printf '%s\n' "$line"
+            described=$( brew desc "$line" 2>/dev/null )
+            if [ "$described" ]
+            then
+                log '%s\n' "$described"
+            else
+                log '%s\n' "$line"
+            fi
         done <<< "$updated"
     fi
+else
+    log 'No brews to update.'
 fi
-brew upgrade || die "Brew upgrade failed."
+outdated=$( brew outdated --unpinned ) \
+    || die 'Failed to list outdated, unpinned brews.' 1
+pinned=$( brew list -w1 --pinned ) || die 'Failed to list pinned brews.' 1
+
+if [ "$outdated" ]
+then
+    [ "$pinned" ] && log "Pinned brews:\n%s\n" "$pinned"
+    log "Outdated brews:\n%s" "$outdated"
+    brew upgrade || die 'Failed to upgrade outdated, unpinned brews.' 1
+else
+    printf 'No unpinned brews to upgrade.\n'
+fi
