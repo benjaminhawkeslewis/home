@@ -20,7 +20,7 @@ check_connection_then_die () {
 
 command -v brew >/dev/null || die 'Cannot find Homebrew!' 1
 
-( connected && log 'Connected!' ) || exit  # Not connected to internet.
+connected || exit  # Not connected to internet.
 
 updated=$( brew update ) || die 'Failed to update brews.' 1
 if [ "Already up-to-date." != "$(brew update)" ]
@@ -40,8 +40,8 @@ then
             fi
         done <<< "$updated"
     fi
-else
-    log 'No brews to update.'
+#else
+#    log 'No brews to update.'
 fi
 outdated=$( brew outdated --unpinned ) \
     || die 'Failed to list outdated, unpinned brews.' 1
@@ -52,6 +52,6 @@ then
     [ "$pinned" ] && log "Pinned brews:\n%s\n" "$pinned"
     log "Outdated brews:\n%s" "$outdated"
     brew upgrade || die 'Failed to upgrade outdated, unpinned brews.' 1
-else
-    printf 'No unpinned brews to upgrade.\n'
+#else
+#    printf 'No unpinned brews to upgrade.\n'
 fi
