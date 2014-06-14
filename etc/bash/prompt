@@ -107,37 +107,40 @@ function git_status_formatter {
 # Setup variables indicating the current svn status, for use in the formatter.
 # Adapted from http://ipsedixit.net/2devnull/120/show-subversion-status-in-shell-prompt
 function get_svn_status {
+    local info
+
+    local revision
+    local branch
+
+    local key
+    local value
+
     unset -v svn_status
     svn_status[0]='' # Revision
     svn_status[1]='' # Branch
-    local info
+
     info=$(
         svn info 2>/dev/null
     ) || return # Not under Subversion
 
-    local revision=$(
-        svnversion
-        #svn info 2>/dev/null | grep Revision | sed -e 's/Revision: //'
-    )
-
-
-    local url=$(
-        local IFS=":"
-        local key
-        local value
-        svn info | while read key value
-        do
-            if [ 'URL' = "$key" ]; then
-                 printf '%s' ${value## }
-            fi
-        done
-    )
-
-    local branch=''
-    local branch=$(
-         echo $url | \
-             perl -ne 's@^.*(?:branches|tags)?/(trunk|[^/]+).*?$@\1@g; print $_;'
-    )
+    # Parse svn info
+    local IFS=":"
+    while read key value
+    do
+        value=${value## }
+        case "$key" in
+            'Relative URL')
+                branch="${value##^/}"
+                branch="${branch##branches/}"
+                branch="${branch##tags/}"
+                ;;
+            'Revision')
+                revision="${value}"
+                ;;
+        esac
+    done <<EOF
+${info}
+EOF
 
     svn_status[0]="$revision"
     svn_status[1]="$branch"
