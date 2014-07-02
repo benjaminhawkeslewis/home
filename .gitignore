@@ -4,4 +4,6 @@
 .DS_Store
 etc/vim/.netrwhist
 etc/vim/bundle/unicode.vim/doc/tags
+etc/vim/bundle
+!etc/vim/bundle/Vundle.vim
 tags
