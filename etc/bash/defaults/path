@@ -1,1 +1,11 @@
-export PATH=~/bin:/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:$PATH
+# Local bin
+export PATH=/usr/local/bin:$PATH
+# Local sbin
+export PATH=/usr/local/sbin:$PATH
+# Local golang
+export PATH=/usr/local/opt/go/libexec/bin:$PATH
+# Local gocode
+export PATH=/usr/local/share/gocode/bin/:$PATH
+# Home bin
+export PATH=~/bin:$PATH
+
