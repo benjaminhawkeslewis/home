@@ -5,7 +5,6 @@ export PATH=/usr/local/sbin:$PATH
 # Local golang
 export PATH=/usr/local/opt/go/libexec/bin:$PATH
 # Local gocode
-export PATH=/usr/local/share/gocode/bin/:$PATH
+export PATH=/usr/local/share/gocode/bin:$PATH
 # Home bin
 export PATH=~/bin:$PATH
-
