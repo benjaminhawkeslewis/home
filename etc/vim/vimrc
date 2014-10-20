@@ -64,6 +64,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'vim-scripts/taglist.vim'
 " Plugin 'mikewest/vimroom'
 Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'https://github.com/elzr/vim-json.git'
 Plugin 'vim-scripts/AutoTag'
 " Plugin 'kikijump/tslime.vim'
 Plugin 'SirVer/ultisnips'
@@ -179,3 +180,9 @@ set background=dark
 
 """ Show whitespace with the better whitespace plugin
 let g:better_whitespace_enabled = 1
+
+""" Turn off swap files
+set noswapfile
+
+""" Turn off backup files
+set nobackup
