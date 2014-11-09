@@ -64,12 +64,14 @@ Plugin 'scrooloose/syntastic'
 Plugin 'vim-scripts/taglist.vim'
 " Plugin 'mikewest/vimroom'
 Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'https://github.com/elzr/vim-json.git'
 Plugin 'vim-scripts/AutoTag'
 " Plugin 'kikijump/tslime.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'bogado/file-line'
 "Plugin 'Shougo/unite.vim'
 "Plugin 'tpope/vim-five'
+Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-rsi'
 Plugin 'tpope/vim-tbone'
@@ -82,6 +84,8 @@ Plugin 'chrisbra/unicode.vim'
 Plugin 'rizzatti/funcoo.vim'
 Plugin 'rizzatti/dash.vim'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'int3/vim-extradite' " requires tpope/vim-fugitive
+Plugin 'puppetlabs/puppet-syntax-vim'
  
 call vundle#end()            " required by vundle
 filetype plugin indent on    " required by vundle
@@ -176,3 +180,9 @@ set background=dark
 
 """ Show whitespace with the better whitespace plugin
 let g:better_whitespace_enabled = 1
+
+""" Turn off swap files
+set noswapfile
+
+""" Turn off backup files
+set nobackup
