@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+if command -v dircolors >/dev/null ; then
+  eval $(dircolors)
+fi
+if command -v gdircolors >/dev/null ; then
+  eval "$(gdircolors)"
+fi
